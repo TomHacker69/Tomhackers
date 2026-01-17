@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Tomhackers</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <!-- OPTION 1: Image Logo (recommended) -->
+                <img src="logo.png" alt="Tomhackers Logo" class="logo-image">
+                
+                <!-- OPTION 2: Text Logo with Icon -->
+                <!-- Uncomment below and comment out the image above if you prefer text logo -->
+                <!-- <i data-lucide="code-2" class="logo-icon"></i>
+                <span class="logo-text">Tomhackers</span> -->
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="team.html" class="nav-link">Team</a>
+                <a href="achievements.html" class="nav-link">Achievements</a>
+                <a href="hackathons.html" class="nav-link">Hackathons</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="menu-toggle" id="menuToggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-link">Home</a>
+            <a href="team.html" class="mobile-link">Team</a>
+            <a href="achievements.html" class="mobile-link">Achievements</a>
+            <a href="hackathons.html" class="mobile-link">Hackathons</a>
+            <a href="projects.html" class="mobile-link">Projects</a>
+            <a href="contact.html" class="mobile-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Background Video -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Team Section -->
+    <section id="team" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Team</h2>
+                <p class="section-subtitle">The brilliant minds behind Tomhackers</p>
+            </div>
+
+            <div class="team-grid" id="teamGrid">
+                <!-- Team members will be dynamically inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Tomhackers. Built with ❤️ by Tomhacker69</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Initialize team grid and animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTeamMembers();
+            lucide.createIcons();
+            
+            // Setup scroll animations for cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            const cards = document.querySelectorAll('.team-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
